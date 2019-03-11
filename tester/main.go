@@ -22,32 +22,47 @@ func (s server) baseRoot(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Basic NATS based microservice example v0.0.1")
 }
 
-func (s server) createTask(w http.ResponseWriter, r *http.Request) {
-	rand.Seed(time.Now().Unix())
-	players := []string{
-		"Terry",
-		"Graham",
-		"John",
-		"Eric",
+func (s server) randomWalker(n string) {
+	lat := 10.17333
+	lng := 56.21281
+	deltaLat := 0.00001
+	deltaLng := 0.00001
+
+	for {
+		r1 := rand.Intn(100)
+		r2 := rand.Intn(100)
+		if r1 < 10 {
+			deltaLat = deltaLat * -1
+		}
+
+		if r2 < 10 {
+			deltaLng = deltaLng * -1
+		}
+		lat += deltaLat
+		lng += deltaLng
+
+		time.Sleep(250 * time.Millisecond)
+		fmt.Printf("%s  %f %f \n", n, lat, lng)
+
+		loc := models.Location{Lat: lat, Lon: lng}
+		userLoc := models.CurrentLocation{Game: "test", Player: n, Location: loc}
+
+		json, err := json.Marshal(userLoc)
+		if err != nil {
+			log.Panic(err)
+		}
+
+		err = s.nc.Publish("locations", json)
+
+		if err != nil {
+			log.Println("Error making NATS request:", err)
+		} else {
+			log.Println("Published: ", json)
+		}
 	}
-	n := rand.Int() % len(players)
-
-	loc := models.Location{Lat: rand.Float64(), Lon: rand.Float64()}
-	userLoc := models.CurrentLocation{Game: "test", Player: players[n], Location: loc}
-
-	json, err := json.Marshal(userLoc)
-	if err != nil {
-		log.Panic(err)
-	}
-
-	err = s.nc.Publish("locations", json)
-	if err != nil {
-		log.Println("Error making NATS request:", err)
-	}
-
-	fmt.Fprintf(w, "Location published")
 }
 
+// https://github.com/kelseyhightower/app-healthz
 func (s server) healthz(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "OK")
 }
@@ -73,8 +88,12 @@ func main() {
 
 	fmt.Println("Connected to NATS at:", s.nc.ConnectedUrl())
 	http.HandleFunc("/", s.baseRoot)
-	http.HandleFunc("/createTask", s.createTask)
 	http.HandleFunc("/healthz", s.healthz)
+
+	go s.randomWalker("Terry")
+	go s.randomWalker("Graham")
+	go s.randomWalker("John")
+	go s.randomWalker("Eric")
 
 	fmt.Println("Server listening on port 8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {

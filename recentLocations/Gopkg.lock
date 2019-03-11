@@ -32,14 +32,20 @@
   version = "v2.1.0"
 
 [[projects]]
+  name = "github.com/paulmach/go.geojson"
+  packages = ["."]
+  revision = "a5c451da2d9c67c590ae6be92565b67698286a1a"
+  version = "v1.4"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ed25519","ed25519/internal/edwards25519"]
-  revision = "8dd112bcdc25174059e45e07517d9fc663123347"
+  revision = "c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "69f01f4aaa0cdeb9ef577a026445893dbed5b259db3983f21353fdb8fa7f821c"
+  inputs-digest = "6b4e5df621de9f4ad92639c35bcb2c049c9f287414098fc63ca5d099c979f9f2"
   solver-name = "gps-cdcl"
   solver-version = 1
