@@ -23,8 +23,8 @@ func (s server) baseRoot(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s server) randomWalker(n string) {
-	lat := 10.17333
-	lng := 56.21281
+	lat := 9.657335
+	lng := 56.11471
 	deltaLat := 0.00001
 	deltaLng := 0.00001
 
@@ -45,7 +45,7 @@ func (s server) randomWalker(n string) {
 		fmt.Printf("%s  %f %f \n", n, lat, lng)
 
 		loc := models.Location{Lat: lat, Lon: lng}
-		userLoc := models.CurrentLocation{Game: "test", Player: n, Location: loc}
+		userLoc := models.CurrentLocation{Game: "test", Player: n, Location: loc, Timestamp: time.Now()}
 
 		json, err := json.Marshal(userLoc)
 		if err != nil {

@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Location is a latiture longitude pair
@@ -12,9 +13,10 @@ type Location struct {
 
 // CurrentLocation reprecents the current location for a player in a game
 type CurrentLocation struct {
-	Game     string   `json:"game"`
-	Player   string   `json:"player"`
-	Location Location `json:"location"`
+	Timestamp time.Time `json:"timestamp"`
+	Game      string    `json:"game"`
+	Player    string    `json:"player"`
+	Location  Location  `json:"location"`
 }
 
 // NewCurrentLocation unmarshals a CurrentLocation from Json

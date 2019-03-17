@@ -1,4 +1,5 @@
-FROM golang:latest
+FROM golang:latest  AS build-env
+
 RUN go get -u github.com/golang/dep/cmd/dep && \
     mkdir -p /go/src/github.com/georace/tester 
 
@@ -12,6 +13,9 @@ COPY . ./
 
 RUN CGO_ENABLED=0 go build -ldflags '-w -s' -o /main
 
+FROM alpine
+
+COPY --from=build-env /main /main
 EXPOSE 8080
 
 CMD ["/main"]
