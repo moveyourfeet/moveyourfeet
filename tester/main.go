@@ -41,7 +41,7 @@ func (s server) randomWalker(n string) {
 		lat += deltaLat
 		lng += deltaLng
 
-		time.Sleep(250 * time.Millisecond)
+		time.Sleep(1000 * time.Millisecond)
 		fmt.Printf("%s  %f %f \n", n, lat, lng)
 
 		loc := models.Location{Lat: lat, Lon: lng}

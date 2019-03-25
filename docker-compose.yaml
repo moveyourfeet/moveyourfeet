@@ -1,6 +1,11 @@
 version: "2"
 
 services:
+  dashboard:
+    build:
+      context: "./dashboard"
+    ports:
+      - "8000:80"
   nats:
     image: 'nats:0.8.0'
     entrypoint: "/gnatsd -DV"
