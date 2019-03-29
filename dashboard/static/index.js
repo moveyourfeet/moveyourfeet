@@ -1,4 +1,13 @@
 
+var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+
 var map = L.map('map'),
     trails = [],
     trail = {
@@ -36,6 +45,20 @@ var map = L.map('map'),
             })
             .catch(error);
     }, {
+            pointToLayer: function (feature, latlng) {
+                console.log(feature)
+                if (feature.id == "Terry") {
+                    return L.circleMarker(latlng, geojsonMarkerOptions);
+
+                }
+                return L.marker(latlng);
+            },
+            // updateFeature: function (feature, oldLayer, newLayer) {
+            //     console.log(feature)
+            //     feature.setIcon()
+            //     oldLayer.setIcon(newLayer._icon);
+            //     return L.Realtime.prototype.options.updateFeature(feature, oldLayer, newLayer)
+            // },
             interval: 250
         }).addTo(map);
 

@@ -2,6 +2,7 @@
 # grep the version from the mix file
 VERSION=$(shell ./version.sh)
 
+
 # HELP
 # This will output the help for each task
 # thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -22,6 +23,9 @@ build: ## Build the release and develoment container.
 # Build and run the container
 up: ## Spin up the project
 	docker-compose up --build -d
+	$(shell open http://localhost:8000 || sensible-browser http://localhost:8000)
+	
+	
 
 stop: ## Stop running containers
 	docker-compose stop
