@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Move Your Feet</string>
-    <string name="edit_message">Skriv en besked</string>
-    <string name="button_send">Send</string>
+    <string name="button_start_game">Start spil</string>
+    <string name="game_name">Navn på spil</string>
+    <string name="user_location_permission_not_granted">Du har ikke tilladt at læse din placering.</string>
+    <string name="user_location_permission_explanation">MoveYourFeet har brug for at kunne læse din placering.</string>
 </resources>
