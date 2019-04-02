@@ -5,4 +5,7 @@
     <string name="game_name">Navn på spil</string>
     <string name="user_location_permission_not_granted">Du har ikke tilladt at læse din placering.</string>
     <string name="user_location_permission_explanation">MoveYourFeet har brug for at kunne læse din placering.</string>
+    <string name="title_activity_main">Move Your Feet</string>
+    <string name="title_activity_create_game">Nyt spil</string>
+    <string name="player_name">Spiller navn</string>
 </resources>
