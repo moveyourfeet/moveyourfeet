@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/georace/game-manager/game"
 	"github.com/georace/game-manager/middleware"
 	customRouter "github.com/georace/game-manager/router"
 	"github.com/georace/game-manager/user"
@@ -15,7 +16,7 @@ func NewRouter() *mux.Router {
 	router := mux.NewRouter()
 
 	//append user routes
-	customRouter.AppRoutes = append(customRouter.AppRoutes, user.Routes)
+	customRouter.AppRoutes = append(customRouter.AppRoutes, user.Routes, game.Routes)
 
 	for _, route := range customRouter.AppRoutes {
 

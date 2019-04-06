@@ -13,16 +13,14 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	var users []User
 	//since we're passing a pointer to users, db.Find assigns array to the address
 	db.DB.Find(&users)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(users)
+	customHTTP.NewResponse(w, users)
 }
 
 func ShowHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var user User
 	db.DB.First(&user, params["userId"])
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
+	customHTTP.NewResponse(w, user)
 }
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
@@ -36,8 +34,7 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 		customHTTP.NewErrorResponse(w, http.StatusUnauthorized, "Error: "+err.Error())
 		return
 	}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(&user)
+	customHTTP.NewResponse(w, user)
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {

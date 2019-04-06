@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/georace/game-manager/game"
 	"github.com/georace/game-manager/user"
 
 	"github.com/georace/game-manager/db"
@@ -22,7 +23,9 @@ func main() {
 	if db.DB == nil {
 		panic("ARGHHGH")
 	}
+	// http://doc.gorm.io/database.html#migration
 	db.DB.AutoMigrate(&user.User{})
+	db.DB.AutoMigrate(&game.Game{})
 	defer db.DB.Close()
 
 	//create http server
