@@ -3,6 +3,7 @@ package game
 import (
 	"encoding/json"
 	"net/http"
+	"time"
 
 	"github.com/georace/game-manager/db"
 	customHTTP "github.com/georace/game-manager/http"
@@ -26,6 +27,7 @@ func ShowHandler(w http.ResponseWriter, r *http.Request) {
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
 	var game Game
 	err := json.NewDecoder(r.Body).Decode(&game)
+	game.CreateTime = time.Now().UTC()
 	if err != nil {
 		customHTTP.NewErrorResponse(w, http.StatusUnauthorized, "Error: "+err.Error())
 		return
@@ -36,6 +38,8 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 		customHTTP.NewErrorResponse(w, http.StatusUnauthorized, "Error: "+err.Error())
 		return
 	}
+	// Reload from database to get the join_secret from the trigger
+	db.DB.First(&game, game.ID)
 	customHTTP.NewResponse(w, game)
 }
 

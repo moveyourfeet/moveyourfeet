@@ -21,11 +21,17 @@ func main() {
 	//Setup database
 	db.DB = db.SetupDB()
 	if db.DB == nil {
-		panic("ARGHHGH")
+		panic("No database connection")
 	}
 	// http://doc.gorm.io/database.html#migration
+	db.DB.DropTableIfExists("games")
+	db.SetupProcedures()
+
 	db.DB.AutoMigrate(&user.User{})
 	db.DB.AutoMigrate(&game.Game{})
+
+	db.SetupTriggers()
+
 	defer db.DB.Close()
 
 	//create http server

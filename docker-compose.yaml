@@ -1,38 +1,39 @@
-version: "2"
+version: "3"
 
 services:
+
   dashboard:
     build:
       context: "./dashboard"
     ports:
       - "8000:80"
+
   nats:
     image: 'nats:0.8.0'
-    entrypoint: "/gnatsd -DV"
-    expose:
-      - "4222"
-    ports:
-      - "8222:8222"
+    entrypoint: "/gnatsd -DV" # -D debug, -V Trace the raw protocol
     hostname: nats-server
+
   tester:
     build:
       context: "./tester"
-    links:
-      - nats
     environment:
       - "NATS_URI=nats://nats:4222"
-    depends_on:
-      - nats
     ports:
       - "8080:8080"
+
   recentlocations:
     build:
       context: "./recentLocations"
-    links:
-      - nats
     environment:
       - "NATS_URI=nats://nats:4222"
-    depends_on:
-      - nats
     ports:
       - "8181:8181"
+
+  game-manager-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypass
+    ports:
+      - "5432:5432"
+
