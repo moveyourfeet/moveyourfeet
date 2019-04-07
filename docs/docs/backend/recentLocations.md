@@ -6,11 +6,11 @@ The purpose of this service is to:
 
 ## Endpoints
 
-| Env           | URL                                                                |
-|---------------|--------------------------------------------------------------------|
+| Env           | URL                                                                        |
+|---------------|----------------------------------------------------------------------------|
 | Cluester dns  | [http://recentlocations:80/](http://recentlocations:80/  )                 |
 | Local dev dns | [http://recentlocations.localtest.me](http://recentlocations.localtest.me) |
-| Local ip      | [http://localhost:8002/](http://localhost:8002/  )                 |
+| Local ip      | [http://localhost:8002/](http://localhost:8002/  )                         |
 
 ## API
 

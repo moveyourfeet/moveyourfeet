@@ -1,0 +1,45 @@
+basePath: '{{.BasePath}}'
+definitions:
+  http.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /locations/{gameId}:
+    get:
+      consumes:
+      - application/json
+      description: Get player locations for a game
+      parameters:
+      - description: Game ID
+        in: path
+        name: gameId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/interface'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: Get player locations for a game
+swagger: "2.0"

@@ -8,6 +8,6 @@ The purpose of this service is to:
 
 | Env           | URL                                                                |
 |---------------|--------------------------------------------------------------------|
-| Local dev dns | [http://dashboard.localtest.me](http://dashboard.localtest.me) |
-| Local ip      | [http://localhost:8000/](http://localhost:8000/  )                 |
+| Local dev dns | [http://dashboard.localtest.me](http://dashboard.localtest.me)     |
+| Local ip      | [http://localhost:8000/](http://localhost:8000/)                   |
 

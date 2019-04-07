@@ -2,7 +2,6 @@ package game
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/georace/game-manager/db"
@@ -37,7 +36,6 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 func ShowHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var game Game
-	fmt.Print(params)
 	if db.DB.First(&game, params["gameId"]).RecordNotFound() {
 		customHTTP.NewErrorResponse(w, http.StatusNotFound, "No record found with id: "+params["gameId"])
 		return

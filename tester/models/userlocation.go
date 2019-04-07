@@ -14,7 +14,7 @@ type Location struct {
 // CurrentLocation reprecents the current location for a player in a game
 type CurrentLocation struct {
 	Timestamp time.Time `json:"timestamp"`
-	Game      string    `json:"game"`
+	Game      int       `json:"game"`
 	Player    string    `json:"player"`
 	Location  Location  `json:"location"`
 }

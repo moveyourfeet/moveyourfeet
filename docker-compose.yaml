@@ -38,6 +38,8 @@ services:
     image: 'nats:0.8.0'
     entrypoint: "/gnatsd -DV" # -D debug, -V Trace the raw protocol
     hostname: nats-server
+    ports:
+      - "4222:4222"
 
   tester:
     build:

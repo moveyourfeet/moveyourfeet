@@ -23,7 +23,6 @@ build: ## Build the release and develoment container.
 # Build and run the container
 up: ## Spin up the project
 	docker-compose up --build -d
-	$(shell open http://localhost:8000 || sensible-browser http://localhost:8000)
 
 stop: ## Stop running containers
 	docker-compose stop
@@ -36,6 +35,9 @@ logs: ## Show logs for running containers
 
 clean-build: ## Clean the generated/compiles files
 	docker-compose build --no-cache
+
+docs: up ## Open documentation page in browser
+	$(shell open docs.localtest.me/ || sensible-browser docs.localtest.me/)
 
 # Docker release - build, tag and push the container
 # release: build publish ## Make a release by building and publishing the `{version}` ans `latest` tagged containers to ECR

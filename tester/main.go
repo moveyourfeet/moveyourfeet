@@ -45,7 +45,7 @@ func (s server) randomWalker(n string) {
 		fmt.Printf("%s  %f %f \n", n, lat, lng)
 
 		loc := models.Location{Lat: lat, Lon: lng}
-		userLoc := models.CurrentLocation{Game: "test", Player: n, Location: loc, Timestamp: time.Now()}
+		userLoc := models.CurrentLocation{Game: 1, Player: n, Location: loc, Timestamp: time.Now()}
 
 		json, err := json.Marshal(userLoc)
 		if err != nil {
