@@ -33,8 +33,6 @@ func NewRouter() *mux.Router {
 				Methods(r.Method).
 				Name(r.Name)
 		}
-
 	}
-
 	return router
 }

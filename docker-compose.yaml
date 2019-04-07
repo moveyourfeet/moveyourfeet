@@ -55,6 +55,7 @@ services:
     environment:
       NATS_URI: nats://nats:4222
       VIRTUAL_HOST: recentlocations.localtest.me
+      PORT: 80
     ports:
       - "8002:80"
 

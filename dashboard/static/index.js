@@ -8,6 +8,9 @@ var geojsonMarkerOptions = {
     fillOpacity: 0.8
 };
 
+var url = new URL(location.href);
+var gameId = url.searchParams.get("game");
+
 var map = L.map('map'),
     trails = [],
     trail = {
@@ -21,7 +24,7 @@ var map = L.map('map'),
         }
     },
     realtime = L.realtime(function (success, error) {
-        fetch('http://recentlocations.localtest.me/locations')
+        fetch('http://recentlocations.localtest.me/locations/' + gameId)
             .then(function (response) { return response.json(); })
             .then(function (data) {
                 var ts = [];

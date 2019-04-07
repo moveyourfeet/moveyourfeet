@@ -9,13 +9,14 @@ import (
 	"syscall"
 	"time"
 
+	_ "github.com/georace/recentLocations/docs"
 	"github.com/georace/recentLocations/models"
 	"github.com/georace/recentLocations/service"
-	"github.com/subosito/gotenv"
+	"github.com/gorilla/handlers"
 
-	_ "github.com/georace/recentLocations/docs"
 	"github.com/nats-io/nats"
 	"github.com/patrickmn/go-cache"
+	"github.com/subosito/gotenv"
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
@@ -24,7 +25,39 @@ func healthz(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	gotenv.Load()
 
+	nc := connectToNat()
+
+	service.CacheService = service.CacheStruct{}
+	service.CacheService.C = cache.New(1*time.Hour, 1*time.Hour)
+
+	sub := subscripeWorkers(nc)
+
+	//init router
+	port := os.Getenv("PORT")
+	router := NewRouter()
+	router.PathPrefix("/documentation/").Handler(httpSwagger.WrapHandler)
+
+	corsObj := handlers.AllowedOrigins([]string{"*"})
+
+	//create http server
+	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(corsObj)(router)))
+
+	// Clean up
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	go func() {
+		<-sigs
+		fmt.Println("Cleaning up connections")
+		sub.Unsubscribe()
+		nc.Close()
+		os.Exit(0)
+	}()
+}
+
+func connectToNat() *nats.Conn {
 	uri := os.Getenv("NATS_URI")
 	var err error
 	var nc *nats.Conn
@@ -42,11 +75,11 @@ func main() {
 		log.Fatal("Error establishing connection to NATS:", err)
 	}
 	fmt.Println("Connected to NATS at:", nc.ConnectedUrl())
+	return nc
+}
 
-	service.CacheService = service.CacheStruct{}
-	service.CacheService.C = cache.New(1*time.Hour, 1*time.Hour)
-
-	sub, _ := nc.Subscribe("locations", func(m *nats.Msg) {
+func subscripeWorkers(nc *nats.Conn) *nats.Subscription {
+	sub, err := nc.Subscribe("locations", func(m *nats.Msg) {
 		fmt.Println("Got new location:", m.Subject, " : ", string(m.Data))
 		loc, err := models.NewCurrentLocation(m.Data)
 		if err != nil {
@@ -54,25 +87,9 @@ func main() {
 		}
 		service.CacheService.StoreLocation(loc)
 	})
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println("Worker subscribed to 'locations' for processing requests...")
-
-	gotenv.Load()
-	//init router
-	port := os.Getenv("PORT")
-	router := NewRouter()
-	router.PathPrefix("/documentation/").Handler(httpSwagger.WrapHandler)
-
-	//create http server
-	log.Fatal(http.ListenAndServe(":"+port, router))
-	// Clean up
-	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-
-	go func() {
-		<-sigs
-		fmt.Println("Cleaning up connections")
-		sub.Unsubscribe()
-		nc.Close()
-		os.Exit(0)
-	}()
+	return sub
 }

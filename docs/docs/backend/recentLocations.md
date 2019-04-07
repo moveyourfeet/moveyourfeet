@@ -14,4 +14,6 @@ The purpose of this service is to:
 
 ## API
 
-Currently the only endpoint: [http://recentlocations.localtest.me/locations](http://recentlocations.localtest.me/locations)
+Demo url: [http://recentlocations.localtest.me/locations/1](http://recentlocations.localtest.me/locations/1)
+
+See [swagger UI](http://recentlocations.localtest.me/documentation/index.html) for API documentation.
