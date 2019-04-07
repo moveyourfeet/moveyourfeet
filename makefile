@@ -24,8 +24,6 @@ build: ## Build the release and develoment container.
 up: ## Spin up the project
 	docker-compose up --build -d
 	$(shell open http://localhost:8000 || sensible-browser http://localhost:8000)
-	
-	
 
 stop: ## Stop running containers
 	docker-compose stop

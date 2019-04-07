@@ -3,6 +3,7 @@ package db
 // SetupProcedures adds functions to PostgreSQLs
 func SetupProcedures() {
 	DB.Exec(`
+/* https://dba.stackexchange.com/questions/174771/how-to-trigger-returning-this-generator-function-in-postgresql */
 CREATE OR REPLACE FUNCTION id_to_alpha(n int) RETURNS text
 LANGUAGE plpgsql IMMUTABLE STRICT AS $$
 DECLARE
@@ -21,6 +22,7 @@ BEGIN
  RETURN output;
 END; $$;
 
+/* https://wiki.postgresql.org/wiki/Skip32_(crypt_32_bits) */
 CREATE OR REPLACE FUNCTION skip32(val int4, cr_key bytea, encrypt bool) returns int4
 AS $$
 DECLARE

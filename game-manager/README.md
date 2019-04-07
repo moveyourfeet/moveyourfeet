@@ -24,7 +24,7 @@ Gorm is setup to automigrate the Games table, so it should be plug and play.
 
 ## Installation
 
-Make sure to have all required external deps. Look at Godeps config file to view them all.
+Make sure to have all required external deps. Run `dep ensure -vendor-only`
 
 **Preferred Method, Live Reloading (optional):**
 

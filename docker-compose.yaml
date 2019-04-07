@@ -37,3 +37,19 @@ services:
     ports:
       - "5432:5432"
 
+  game-manager:
+    build:
+      context: "./game-manager"
+    restart: always
+    ports:
+      - "3010:3010"
+    environment:
+      ENVIRONMENT: "Development"
+      PORT: 3010
+      DB_HOST: "game-manager-db"
+      DB_NAME: "postgres"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "mypass"
+      DB_PORT: 5432
+      JWT_SECRET: "A super secret password"
+
