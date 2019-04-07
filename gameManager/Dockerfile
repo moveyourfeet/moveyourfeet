@@ -16,6 +16,6 @@ RUN CGO_ENABLED=0 go build -ldflags '-w -s' -o /main
 FROM alpine
 
 COPY --from=build-env /main /main
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["/main"]

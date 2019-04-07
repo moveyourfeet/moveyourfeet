@@ -2,11 +2,37 @@ version: "3"
 
 services:
 
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  docs:
+    image:  squidfunk/mkdocs-material
+    volumes:
+      - ./docs:/docs
+    environment:
+      VIRTUAL_HOST: docs.localtest.me
+
   dashboard:
     build:
       context: "./dashboard"
     ports:
       - "8000:80"
+    environment:
+      VIRTUAL_HOST: dashboard.localtest.me
+
+  mobilebff:
+    build:
+      context: "./mobileBFF"
+    environment:
+      VIRTUAL_HOST: mobilebff.localtest.me
+      VIRTUAL_PORT: 80
+      PORT: 80
+    ports:
+      - "8003:80"
 
   nats:
     image: 'nats:0.8.0'
@@ -25,9 +51,10 @@ services:
     build:
       context: "./recentLocations"
     environment:
-      - "NATS_URI=nats://nats:4222"
+      NATS_URI: nats://nats:4222
+      VIRTUAL_HOST: recentlocations.localtest.me
     ports:
-      - "8181:8181"
+      - "8002:80"
 
   gamemanager-db:
     image: postgres
@@ -42,14 +69,14 @@ services:
       context: "./gameManager"
     restart: always
     ports:
-      - "3010:3010"
+      - "8001:80"
     environment:
       ENVIRONMENT: "Development"
-      PORT: 3010
+      PORT: 80
       DB_HOST: "gamemanager-db"
       DB_NAME: "postgres"
       DB_USERNAME: "postgres"
       DB_PASSWORD: "mypass"
       DB_PORT: 5432
       JWT_SECRET: "A super secret password"
-
+      VIRTUAL_HOST: gamemanager.localtest.me

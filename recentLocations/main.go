@@ -83,10 +83,10 @@ func main() {
 
 	http.HandleFunc("/locations", locations)
 	http.HandleFunc("/healthz", healthz)
-	if err := http.ListenAndServe(":8181", nil); err != nil {
+	if err := http.ListenAndServe(":80", nil); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Server listening on port 8181...")
+	fmt.Println("Server listening on port 80...")
 
 	// Clean up
 	sigs := make(chan os.Signal, 1)

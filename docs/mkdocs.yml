@@ -1,0 +1,9 @@
+site_name: Move Your Feet
+nav:
+    - Home: index.md
+    - Frontend:
+      - Dashbord: frontend/dashboard.md
+    - Backend:
+      - Game Manager: backend/gameManager.md
+      - Recent Locations: backend/recentLocations.md
+theme: material 

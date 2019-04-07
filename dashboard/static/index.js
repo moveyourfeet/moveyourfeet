@@ -21,7 +21,7 @@ var map = L.map('map'),
         }
     },
     realtime = L.realtime(function (success, error) {
-        fetch('http://localhost:8181/locations')
+        fetch('http://recentlocations.localtest.me/locations')
             .then(function (response) { return response.json(); })
             .then(function (data) {
                 var ts = [];

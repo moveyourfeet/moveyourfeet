@@ -4,7 +4,7 @@ From https://github.com/hellojebus/go-mux-jwt-boilerplate
 
 The purpose of this service is to handle games, game rules, and join codes
 
-## PI
+## API
 
 See `/documentation/index.html` for API documentation.
 
