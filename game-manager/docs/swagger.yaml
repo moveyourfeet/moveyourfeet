@@ -1,0 +1,128 @@
+basePath: /
+definitions:
+  game.Game:
+    properties:
+      create_time:
+        type: string
+      id:
+        type: integer
+      join_secret:
+        type: string
+      name:
+        type: string
+      owner:
+        type: string
+    type: object
+  game.NewGame:
+    properties:
+      name:
+        type: string
+      owner:
+        type: string
+    type: object
+  http.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      error:
+        type: boolean
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Handles games, game rules, and join codes.
+  license: {}
+  title: Game Manager
+  version: "1.0"
+paths:
+  /games:
+    get:
+      consumes:
+      - application/json
+      description: get games
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/game.Game'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: List games
+    post:
+      consumes:
+      - application/json
+      description: create a game
+      parameters:
+      - description: Add game
+        in: body
+        name: newgame
+        required: true
+        schema:
+          $ref: '#/definitions/game.NewGame'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/game.Game'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: Create game
+  /games/{gameId}:
+    delete:
+      consumes:
+      - application/json
+      description: deletes a game
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/game.Game'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: Delete game
+    get:
+      consumes:
+      - application/json
+      description: get one game
+      parameters:
+      - description: Game ID
+        in: path
+        name: gameId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/game.Game'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: Get game
+swagger: "2.0"

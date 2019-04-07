@@ -6,7 +6,6 @@ import (
 	"github.com/georace/game-manager/game"
 	"github.com/georace/game-manager/middleware"
 	customRouter "github.com/georace/game-manager/router"
-	"github.com/georace/game-manager/user"
 	"github.com/gorilla/mux"
 )
 
@@ -15,8 +14,7 @@ func NewRouter() *mux.Router {
 	//init router
 	router := mux.NewRouter()
 
-	//append user routes
-	customRouter.AppRoutes = append(customRouter.AppRoutes, user.Routes, game.Routes)
+	customRouter.AppRoutes = append(customRouter.AppRoutes, game.Routes)
 
 	for _, route := range customRouter.AppRoutes {
 

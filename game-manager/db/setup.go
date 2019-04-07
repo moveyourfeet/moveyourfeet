@@ -90,7 +90,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS games_join_secret ON games;
-CREATE TRIGGER things_trigger BEFORE INSERT ON games 
+CREATE TRIGGER games_join_secret BEFORE INSERT ON games 
 FOR EACH ROW EXECUTE PROCEDURE generate_short_id();
 `)
 }
