@@ -14,6 +14,8 @@
 		07D32634225BCE200048A091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D32632225BCE200048A091 /* LaunchScreen.storyboard */; };
 		07D3263F225BCE200048A091 /* MoveYourFeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3263E225BCE200048A091 /* MoveYourFeetTests.swift */; };
 		07D3264A225BCE200048A091 /* MoveYourFeetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D32649225BCE200048A091 /* MoveYourFeetUITests.swift */; };
+		07D32658225BD62B0048A091 /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D32657225BD62A0048A091 /* SharedCode.framework */; };
+		07D32659225BD62B0048A091 /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07D32657225BD62A0048A091 /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		07D3265A225BD62B0048A091 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				07D32659225BD62B0048A091 /* SharedCode.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		07D32626225BCE1E0048A091 /* MoveYourFeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoveYourFeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D32629225BCE1E0048A091 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +63,7 @@
 		07D32645225BCE200048A091 /* MoveYourFeetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoveYourFeetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D32649225BCE200048A091 /* MoveYourFeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYourFeetUITests.swift; sourceTree = "<group>"; };
 		07D3264B225BCE200048A091 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07D32657225BD62A0048A091 /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../core/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07D32658225BD62B0048A091 /* SharedCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +95,7 @@
 		07D3261D225BCE1E0048A091 = {
 			isa = PBXGroup;
 			children = (
+				07D32657225BD62A0048A091 /* SharedCode.framework */,
 				07D32628225BCE1E0048A091 /* MoveYourFeet */,
 				07D3263D225BCE200048A091 /* MoveYourFeetTests */,
 				07D32648225BCE200048A091 /* MoveYourFeetUITests */,
@@ -132,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07D3264E225BCE200048A091 /* Build configuration list for PBXNativeTarget "MoveYourFeet" */;
 			buildPhases = (
+				07D3265B225BD6FB0048A091 /* Run Gradle */,
 				07D32622225BCE1E0048A091 /* Sources */,
 				07D32623225BCE1E0048A091 /* Frameworks */,
 				07D32624225BCE1E0048A091 /* Resources */,
+				07D3265A225BD62B0048A091 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +271,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07D3265B225BD6FB0048A091 /* Run Gradle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Gradle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../../core/build/xcode-frameworks\"\n./gradlew :core:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07D32622225BCE1E0048A091 /* Sources */ = {
@@ -434,6 +476,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H59KS3RRS6;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../core/build/xcode-frameworks";
 				INFOPLIST_FILE = MoveYourFeet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +496,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H59KS3RRS6;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../core/build/xcode-frameworks";
 				INFOPLIST_FILE = MoveYourFeet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
