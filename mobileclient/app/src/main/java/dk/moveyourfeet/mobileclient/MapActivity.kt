@@ -17,8 +17,6 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import kotlinx.android.synthetic.main.activity_map.*
 
-const val EXTRA_MESSAGE = "dk.moveyourfeet.mobileclient.MESSAGE"
-
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
 {
   private var permissionsManager: PermissionsManager = PermissionsManager(this)

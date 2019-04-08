@@ -11,5 +11,9 @@
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="mobileclient.core.androidMain" target="1.6" />
+      <module name="mobileclient.core.androidTest" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
