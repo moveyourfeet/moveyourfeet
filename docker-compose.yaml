@@ -17,6 +17,7 @@ services:
       VIRTUAL_HOST: docs.localtest.me
 
   dashboard:
+    image: moveyourfeet/dashboard
     build:
       context: "./dashboard"
     ports:
@@ -50,6 +51,7 @@ services:
       - "8080:8080"
 
   recentlocations:
+    image: moveyourfeet/recentlocations
     build:
       context: "./recentLocations"
     environment:
@@ -68,6 +70,7 @@ services:
       - "5432:5432"
 
   gamemanager:
+    image: moveyourfeet/gamemanager
     build:
       context: "./gameManager"
     restart: always
