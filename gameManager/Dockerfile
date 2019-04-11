@@ -1,9 +1,9 @@
 FROM golang:latest  AS build-env
 
 RUN go get -u github.com/golang/dep/cmd/dep && \
-    mkdir -p /go/src/github.com/georace/game-manager 
+    mkdir -p /go/src/github.com/georace/gameManager 
 
-WORKDIR /go/src/github.com/georace/game-manager
+WORKDIR /go/src/github.com/georace/gameManager
 
 COPY Gopkg.lock Gopkg.toml ./
 

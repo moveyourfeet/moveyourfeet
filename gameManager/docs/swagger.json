@@ -18,6 +18,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Games"
+                ],
                 "summary": "List games",
                 "responses": {
                     "200": {
@@ -45,6 +48,9 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Games"
                 ],
                 "summary": "Create game",
                 "parameters": [
@@ -86,6 +92,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Games"
+                ],
                 "summary": "Get game",
                 "parameters": [
                     {
@@ -121,6 +130,9 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Games"
+                ],
                 "summary": "Delete game",
                 "responses": {
                     "200": {
@@ -128,6 +140,34 @@
                         "schema": {
                             "type": "object",
                             "$ref": "#/definitions/game.Game"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/http.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/healthz": {
+            "get": {
+                "description": "Service Health",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system"
+                ],
+                "summary": "Service Health",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/http.Health"
                         }
                     },
                     "404": {
@@ -183,6 +223,14 @@
                     "type": "boolean"
                 },
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "http.Health": {
+            "type": "object",
+            "properties": {
+                "status": {
                     "type": "string"
                 }
             }

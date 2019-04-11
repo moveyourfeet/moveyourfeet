@@ -20,6 +20,7 @@ import (
 // @Failure 404 {object} http.ErrorResponse
 // @Param gameId path int true "Game ID"
 // @Router /locations/{gameId} [get]
+// @Tags Locations
 func ShowHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 

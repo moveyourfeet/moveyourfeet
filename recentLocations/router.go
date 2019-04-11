@@ -3,17 +3,19 @@ package main
 import (
 	"net/http"
 
+	customHttp "github.com/georace/recentLocations/http"
 	"github.com/georace/recentLocations/locations"
 	customRouter "github.com/georace/recentLocations/router"
 	"github.com/gorilla/mux"
 )
 
+// NewRouter sets up all http endpoints
 func NewRouter() *mux.Router {
 
 	//init router
 	router := mux.NewRouter()
 
-	customRouter.AppRoutes = append(customRouter.AppRoutes, locations.Routes)
+	customRouter.AppRoutes = append(customRouter.AppRoutes, locations.Routes, customHttp.Routes)
 
 	for _, route := range customRouter.AppRoutes {
 

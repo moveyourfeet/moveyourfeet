@@ -29,6 +29,11 @@ definitions:
       message:
         type: string
     type: object
+  http.Health:
+    properties:
+      status:
+        type: string
+    type: object
 info:
   contact: {}
   description: Handles games, game rules, and join codes.
@@ -56,6 +61,8 @@ paths:
             $ref: '#/definitions/http.ErrorResponse'
             type: object
       summary: List games
+      tags:
+      - Games
     post:
       consumes:
       - application/json
@@ -82,6 +89,8 @@ paths:
             $ref: '#/definitions/http.ErrorResponse'
             type: object
       summary: Create game
+      tags:
+      - Games
   /games/{gameId}:
     delete:
       consumes:
@@ -101,6 +110,8 @@ paths:
             $ref: '#/definitions/http.ErrorResponse'
             type: object
       summary: Delete game
+      tags:
+      - Games
     get:
       consumes:
       - application/json
@@ -125,4 +136,25 @@ paths:
             $ref: '#/definitions/http.ErrorResponse'
             type: object
       summary: Get game
+      tags:
+      - Games
+  /healthz:
+    get:
+      description: Service Health
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.Health'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: Service Health
+      tags:
+      - system
 swagger: "2.0"

@@ -1,7 +1,8 @@
 package game
 
-import "github.com/georace/game-manager/router"
+import "github.com/georace/gameManager/router"
 
+// Routes contains all endpoints defined in this package
 var Routes = router.RoutePrefix{
 	"/games",
 	[]router.Route{

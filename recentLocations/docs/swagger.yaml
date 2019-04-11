@@ -9,6 +9,11 @@ definitions:
       message:
         type: string
     type: object
+  http.Health:
+    properties:
+      status:
+        type: string
+    type: object
 host: '{{.Host}}'
 info:
   contact: {}
@@ -17,6 +22,25 @@ info:
   title: '{{.Title}}'
   version: '{{.Version}}'
 paths:
+  /healthz:
+    get:
+      description: Service Health
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.Health'
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+            type: object
+      summary: Service Health
+      tags:
+      - System
   /locations/{gameId}:
     get:
       consumes:
@@ -42,4 +66,6 @@ paths:
             $ref: '#/definitions/http.ErrorResponse'
             type: object
       summary: Get player locations for a game
+      tags:
+      - Locations
 swagger: "2.0"
