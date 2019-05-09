@@ -17,6 +17,7 @@
     "@types/socket.io": "^2.1.2",
     "express": "^4.16.4",
     "socket.io": "^2.2.0",
+    "ts-nats": "^1.2.4",
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.4.1"
   },

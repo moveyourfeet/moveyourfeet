@@ -1,8 +1,9 @@
-import { createServer, Server } from 'http';
 import express from 'express';
+import { createServer, Server } from 'http';
 import socketIo from 'socket.io';
 
-import { Message } from './model';
+import { CreateGame, Message } from './model';
+import { MQ } from './messagequeue';
 
 export class ChatServer {
     public static readonly PORT: number = 8080;
@@ -11,12 +12,19 @@ export class ChatServer {
     private io: SocketIO.Server;
     private port: string | number;
 
+    private nc: MQ
+
     constructor() {
         this.createApp();
         this.config();
         this.createServer();
         this.sockets();
         this.listen();
+        this.nc = new MQ()
+    }
+
+    public getApp(): express.Application {
+        return this.app;
     }
 
     private createApp(): void {
@@ -47,13 +55,23 @@ export class ChatServer {
                 this.io.emit('message', m);
             });
 
+            socket.on('create-game', (cg: CreateGame) => {
+                console.log('[server](create-game): Name: %s', cg.name);
+                console.log('[server](create-game): GF.lat: %s', cg.gameField.latitude);
+                console.log('[server](create-game): GF.lng: %s', cg.gameField.longitude);
+                console.log('[server](create-game): %s', JSON.stringify(cg));
+                let s = this.nc.createGame(cg)
+                console.log(s)
+                // TODO
+            });
+
             socket.on('disconnect', () => {
                 console.log('Client disconnected');
             });
         });
-    }
 
-    public getApp(): express.Application {
-        return this.app;
+        this.app.get('/', (request, response) => {
+            response.send('Hello world!');
+          });
     }
 }
