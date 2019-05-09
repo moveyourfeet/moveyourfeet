@@ -3,6 +3,7 @@ nav:
     - Home: index.md
     - Frontend:
       - Dashbord: frontend/dashboard.md
+      - MobileBFF: frontend/mobileBFF.md
     - Backend:
       - Game Manager: backend/gameManager.md
       - Recent Locations: backend/recentLocations.md
