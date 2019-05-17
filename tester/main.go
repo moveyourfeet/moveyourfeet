@@ -9,7 +9,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/georace/tester/models"
+	"github.com/moveyourfeet/moveyourfeet/tester/models"
 
 	"github.com/nats-io/nats"
 )
@@ -95,8 +95,8 @@ func main() {
 	go s.randomWalker("John")
 	go s.randomWalker("Eric")
 
-	fmt.Println("Server listening on port 8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	fmt.Println("Server listening on port 80...")
+	if err := http.ListenAndServe(":80", nil); err != nil {
 		log.Fatal(err)
 	}
 }
