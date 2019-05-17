@@ -10,7 +10,13 @@ jobs:
           docker_layer_caching: true
       - run:
           command: make build
+      - run:
+          name: Push application Docker image
+          command: bash .circleci/tagAndPush.sh
 
+
+
+  # e2e-prebuild:
   # e2e-prebuild:
   #   docker:
   #     - image: circleci/ruby:2.4.1
@@ -51,6 +57,7 @@ workflows:
   ci:
     jobs:
       - build
+        
       # - e2e-prebuild
       # - e2e-chrome:
       #     requires:
