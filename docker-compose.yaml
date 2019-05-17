@@ -48,7 +48,7 @@ services:
     environment:
       - "NATS_URI=nats://nats:4222"
     ports:
-      - "8080:8080"
+      - "8080:80"
 
   recentlocations:
     image: moveyourfeet/recentlocations

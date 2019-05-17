@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/georace/recentLocations/models"
+	"github.com/moveyourfeet/moveyourfeet/recentLocations/models"
 	cache "github.com/patrickmn/go-cache"
 )
 

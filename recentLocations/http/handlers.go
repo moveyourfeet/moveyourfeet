@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/georace/recentLocations/router"
+	"github.com/moveyourfeet/moveyourfeet/recentLocations/router"
 )
 
 // Health Details the health of a service

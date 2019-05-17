@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/georace/recentLocations/models"
-	"github.com/georace/recentLocations/service"
+	"github.com/moveyourfeet/moveyourfeet/recentLocations/models"
+	"github.com/moveyourfeet/moveyourfeet/recentLocations/service"
 	"github.com/nats-io/nats"
 )
 

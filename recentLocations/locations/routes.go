@@ -1,6 +1,6 @@
 package locations
 
-import "github.com/georace/recentLocations/router"
+import "github.com/moveyourfeet/moveyourfeet/recentLocations/router"
 
 var Routes = router.RoutePrefix{
 	"/locations",
