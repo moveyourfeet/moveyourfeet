@@ -1,12 +1,13 @@
 
-var geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-};
+var geojsonMarkerOptions = [
+    x = {
+        radius: 10,
+        fillColor: "#ff7800",
+        color: "#aabb00",
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.4
+    }];
 
 var url = new URL(location.href);
 var gameId = url.searchParams.get("game");
@@ -51,9 +52,9 @@ var map = L.map('map'),
             pointToLayer: function (feature, latlng) {
                 console.log(feature)
                 if (feature.id == "Terry") {
-                    return L.circleMarker(latlng, geojsonMarkerOptions);
-
+                    return L.circleMarker(latlng, geojsonMarkerOptions['x']);
                 }
+
                 return L.marker(latlng);
             },
             // updateFeature: function (feature, oldLayer, newLayer) {
