@@ -1,0 +1,60 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          command: make build
+
+  # e2e-prebuild:
+  #   docker:
+  #     - image: circleci/ruby:2.4.1
+  #   steps:
+  #     - checkout
+  #     - setup_remote_docker:
+  #         docker_layer_caching: true
+  #     - run:
+  #         name: Prebuild shared images
+  #         command: |
+  #           docker-compose --file tests/e2e/docker-compose.yml build click-api click-client
+  # e2e-chrome:
+  #   docker:
+  #     - image: circleci/ruby:2.4.1
+  #   steps:
+  #     - checkout
+  #     - setup_remote_docker:
+  #         docker_layer_caching: true
+  #     - run:
+  #         name: Run tests
+  #         command: |
+  #           docker-compose --file tests/e2e/docker-compose.yml build chrome
+  #           docker-compose --file tests/e2e/docker-compose.yml run --name app chrome ./start.sh
+  #     - run:
+  #         name: Copy test output
+  #         when: always
+  #         command: |
+  #           docker cp app:/usr/src/app/test/reports /tmp
+  #           docker cp app:/usr/src/app/screenshots /tmp
+  #     - store_artifacts:
+  #         path: /tmp/screenshots
+  #     - store_test_results:
+  #         path: /tmp/reports
+
+workflows:
+  version: 2
+
+  ci:
+    jobs:
+      - build
+      # - e2e-prebuild
+      # - e2e-chrome:
+      #     requires:
+      #       - e2e-prebuild
+      # - e2e-firefox:
+      #     requires:
+      #       - e2e-prebuild
