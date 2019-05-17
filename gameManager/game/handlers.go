@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	customHTTP "github.com/georace/gameManager/http"
+	customHTTP "github.com/moveyourfeet/gameManager/http"
+
 	"github.com/gorilla/mux"
 )
 

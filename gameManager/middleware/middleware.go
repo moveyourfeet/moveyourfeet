@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/dgrijalva/jwt-go"
-	customHTTP "github.com/georace/gameManager/http"
+	customHTTP "github.com/moveyourfeet/gameManager/http"
 )
 
 func JWTMiddleware(next http.Handler) http.Handler {

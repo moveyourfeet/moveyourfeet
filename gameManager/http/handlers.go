@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/georace/gameManager/router"
+	"github.com/moveyourfeet/gameManager/router"
 )
 
 // Health Details the health of a service

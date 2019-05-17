@@ -3,12 +3,12 @@ package main
 import (
 	"net/http"
 
-	customHttp "github.com/georace/gameManager/http"
+	customHttp "github.com/moveyourfeet/gameManager/http"
 
-	"github.com/georace/gameManager/game"
-	"github.com/georace/gameManager/middleware"
-	customRouter "github.com/georace/gameManager/router"
 	"github.com/gorilla/mux"
+	"github.com/moveyourfeet/gameManager/game"
+	"github.com/moveyourfeet/gameManager/middleware"
+	customRouter "github.com/moveyourfeet/gameManager/router"
 )
 
 // NewRouter sets up all http endpoints
