@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
-	_ "github.com/georace/recentLocations/docs"
-	"github.com/georace/recentLocations/service"
 	"github.com/gorilla/handlers"
+	_ "github.com/moveyourfeet/moveyourfeet/recentLocations/docs"
+	"github.com/moveyourfeet/moveyourfeet/recentLocations/service"
 
 	"github.com/patrickmn/go-cache"
 	"github.com/subosito/gotenv"

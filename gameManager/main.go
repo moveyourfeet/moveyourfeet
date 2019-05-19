@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/georace/gameManager/db"
-	"github.com/georace/gameManager/game"
+	"github.com/moveyourfeet/gameManager/db"
+	"github.com/moveyourfeet/gameManager/game"
 	"github.com/subosito/gotenv"
 
-	_ "github.com/georace/gameManager/docs"
+	_ "github.com/moveyourfeet/gameManager/docs"
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 

@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	customHttp "github.com/georace/recentLocations/http"
-	"github.com/georace/recentLocations/locations"
-	customRouter "github.com/georace/recentLocations/router"
 	"github.com/gorilla/mux"
+	customHttp "github.com/moveyourfeet/moveyourfeet/recentLocations/http"
+	"github.com/moveyourfeet/moveyourfeet/recentLocations/locations"
+	customRouter "github.com/moveyourfeet/moveyourfeet/recentLocations/router"
 )
 
 // NewRouter sets up all http endpoints

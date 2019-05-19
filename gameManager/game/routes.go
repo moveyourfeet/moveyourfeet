@@ -1,15 +1,34 @@
 package game
 
-import "github.com/georace/gameManager/router"
+import "github.com/moveyourfeet/gameManager/router"
 
 // Routes contains all endpoints defined in this package
 var Routes = router.RoutePrefix{
-	"/games",
-	[]router.Route{
-		router.Route{"GamesIndex", "GET", "", IndexHandler, false},
-		router.Route{"GamesShow", "GET", "/{gameId}", ShowHandler, false},
-		router.Route{"GamesCreate", "POST", "", CreateHandler, false},
-		router.Route{"DeleteHandler", "DELETE", "/{gameId}", DeleteHandler, true},
-		// router.Route{"UpdateHandler", "PUT", "/{gameId}", UpdateHandler, true},
+	Prefix: "/games",
+	SubRoutes: []router.Route{
+		{
+			Name:        "GamesIndex",
+			Method:      "GET",
+			Pattern:     "",
+			HandlerFunc: IndexHandler,
+			Protected:   false},
+		{
+			Name:        "GamesShow",
+			Method:      "GET",
+			Pattern:     "/{gameId}",
+			HandlerFunc: ShowHandler,
+			Protected:   false},
+		{
+			Name:        "GamesCreate",
+			Method:      "POST",
+			Pattern:     "",
+			HandlerFunc: CreateHandler,
+			Protected:   false},
+		{
+			Name:        "DeleteHandler",
+			Method:      "DELETE",
+			Pattern:     "/{gameId}",
+			HandlerFunc: DeleteHandler,
+			Protected:   true},
 	},
 }

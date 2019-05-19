@@ -6,12 +6,14 @@ import (
 	"strconv"
 
 	"github.com/jinzhu/gorm"
+	// Need explicit import of database dialect
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-//database global
+// DB is a global database referance
 var DB *gorm.DB
 
+// SetupDB creates a connection to a database using environment vars
 func SetupDB() *gorm.DB {
 
 	//db config vars

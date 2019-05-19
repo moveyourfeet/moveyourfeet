@@ -3,7 +3,7 @@ package game
 import (
 	"fmt"
 
-	"github.com/georace/gameManager/db"
+	"github.com/moveyourfeet/gameManager/db"
 )
 
 // List gets all games
