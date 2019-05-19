@@ -9,11 +9,13 @@ import (
 	cache "github.com/patrickmn/go-cache"
 )
 
+// CacheStruct contains a cache and a sync method
 type CacheStruct struct {
 	C     *cache.Cache
 	mutex sync.Mutex
 }
 
+// CacheService is an instance of a cache
 var CacheService CacheStruct
 
 // StoreLocation saves the current location of a player in a cache

@@ -9,6 +9,7 @@ import (
 	customHTTP "github.com/moveyourfeet/gameManager/http"
 )
 
+// JWTMiddleware checks for a valid JWT in the Authorization header
 func JWTMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		tokenString := r.Header.Get("Authorization")
@@ -23,10 +24,10 @@ func JWTMiddleware(next http.Handler) http.Handler {
 			return
 		}
 
-		//pass userId claim to req
+		//pass userID claim to req
 		//todo: find a better way to convert the claim to string
-		userId := strconv.FormatFloat(claims.(jwt.MapClaims)["user_id"].(float64), 'g', 1, 64)
-		r.Header.Set("userId", userId)
+		userID := strconv.FormatFloat(claims.(jwt.MapClaims)["user_id"].(float64), 'g', 1, 64)
+		r.Header.Set("userId", userID)
 		next.ServeHTTP(w, r)
 	})
 }

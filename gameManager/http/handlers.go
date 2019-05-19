@@ -26,8 +26,13 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 
 // Routes from the http package
 var Routes = router.RoutePrefix{
-	"",
-	[]router.Route{
-		router.Route{"Health", "GET", "/healthz", HealthHandler, false},
+	Prefix: "",
+	SubRoutes: []router.Route{
+		{
+			Name:        "Health",
+			Method:      "GET",
+			Pattern:     "/healthz",
+			HandlerFunc: HealthHandler,
+			Protected:   false},
 	},
 }

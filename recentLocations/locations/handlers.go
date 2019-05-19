@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gorilla/mux"
 	customHTTP "github.com/moveyourfeet/moveyourfeet/recentLocations/http"
 	"github.com/moveyourfeet/moveyourfeet/recentLocations/service"
-	"github.com/gorilla/mux"
 	geojson "github.com/paulmach/go.geojson"
 )
 
