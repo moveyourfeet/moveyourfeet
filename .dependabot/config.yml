@@ -1,0 +1,14 @@
+version: 1
+update_configs:
+  - package_manager: "go:modules"
+    directory: "/tester"
+    update_schedule: "daily"
+  - package_manager: "go:modules"
+    directory: "/gameManager"
+    update_schedule: "daily"
+  - package_manager: "go:modules"
+    directory: "/recentLocations"
+    update_schedule: "daily"
+  - package_manager: "javascript"
+    directory: "/mobileBFF"
+    update_schedule: "daily"
