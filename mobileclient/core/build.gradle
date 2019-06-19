@@ -1,27 +1,18 @@
 apply plugin: 'kotlin-multiplatform'
+apply plugin: 'kotlinx-serialization'
 
 kotlin {
   targets {
     final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
                           ? presets.iosArm64 : presets.iosX64
 
-    fromPreset(iOSTarget, 'iOS') {
+    fromPreset(iOSTarget, 'ios') {
       binaries {
         framework('SharedCode')
       }
     }
 
     fromPreset(presets.jvm, 'android')
-  }
-  
-  sourceSets {
-    commonMain.dependencies {
-      api 'org.jetbrains.kotlin:kotlin-stdlib-common'
-    }
-    
-    androidMain.dependencies {
-      api 'org.jetbrains.kotlin:kotlin-stdlib'
-    }
   }
 }
 
@@ -30,10 +21,19 @@ configurations {
   compileClasspath
 }
 
+dependencies {
+  commonMainImplementation "io.ktor:ktor-client-core:$ktor_version"
+  
+  androidMainImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+  androidMainImplementation "io.ktor:ktor-client-android:$ktor_version"
+  
+  iosMainImplementation "io.ktor:ktor-client-ios:$ktor_version"
+}
+
 task packForXcode(type: Sync) {
   final File frameworkDir = new File(buildDir, "xcode-frameworks")
   final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
-  final def framework = kotlin.targets.iOS.binaries.getFramework("SharedCode", mode)
+  final def framework = kotlin.targets.ios.binaries.getFramework("SharedCode", mode)
 
   inputs.property "mode", mode
   dependsOn framework.linkTask

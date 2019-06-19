@@ -8,4 +8,6 @@
     <string name="title_activity_main">Move Your Feet</string>
     <string name="title_activity_create_game">Nyt spil</string>
     <string name="player_name">Spiller navn</string>
+    <string name="element_text">Element</string>
+    <string name="error">Fejl: %s</string>
 </resources>

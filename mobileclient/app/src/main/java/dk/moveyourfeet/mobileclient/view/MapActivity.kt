@@ -1,23 +1,24 @@
-package dk.moveyourfeet.mobileclient
+package dk.moveyourfeet.mobileclient.view
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
+import dk.moveyourfeet.mobileclient.R
 import kotlinx.android.synthetic.main.activity_map.*
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
+class MapActivity : BaseActivity(), OnMapReadyCallback, PermissionsListener
 {
   private var permissionsManager: PermissionsManager = PermissionsManager(this)
 
@@ -49,14 +50,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         .accuracyColor(ContextCompat.getColor(this, R.color.mapboxGreen))
         .build()
 
+      val activationOptions = LocationComponentActivationOptions.builder(this, loadedMapStyle)
+        .locationComponentOptions(options)
+        .build()
+
       // Get an instance of the component
       val locationComponent = mapboxMap.locationComponent
 
       // Activate the component
-      locationComponent.activateLocationComponent(this, loadedMapStyle)
-
-      // Apply the options to the LocationComponent
-      locationComponent.applyStyle(options)
+      locationComponent.activateLocationComponent(activationOptions)
 
       // Enable to make component visible
       locationComponent.isLocationComponentEnabled = true
