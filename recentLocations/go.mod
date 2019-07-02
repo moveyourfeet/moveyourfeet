@@ -17,5 +17,5 @@ require (
 	github.com/subosito/gotenv v1.1.1
 	github.com/swaggo/files v0.0.0-20190110041405-30649e0721f8 // indirect
 	github.com/swaggo/http-swagger v0.0.0-20190506005510-79126c07518e
-	github.com/swaggo/swag v1.5.1
+	github.com/swaggo/swag v1.6.0
 )
