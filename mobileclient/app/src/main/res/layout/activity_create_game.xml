@@ -27,6 +27,7 @@
                 android:ems="10"
                 android:hint="@string/game_name"
                 android:inputType="text"
+                android:importantForAutofill="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +42,7 @@
                 android:ems="10"
                 android:hint="@string/player_name"
                 android:inputType="textPersonName"
+                android:importantForAutofill="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gameName" />
