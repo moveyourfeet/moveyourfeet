@@ -14,7 +14,7 @@ require (
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/paulmach/go.geojson v1.4.0
-	github.com/subosito/gotenv v1.1.1
+	github.com/subosito/gotenv v1.2.0
 	github.com/swaggo/files v0.0.0-20190110041405-30649e0721f8 // indirect
 	github.com/swaggo/http-swagger v0.0.0-20190506005510-79126c07518e
 	github.com/swaggo/swag v1.6.1
