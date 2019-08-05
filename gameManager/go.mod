@@ -24,7 +24,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
 	github.com/stretchr/testify v1.3.0 // indirect
-	github.com/subosito/gotenv v1.1.1
+	github.com/subosito/gotenv v1.2.0
 	github.com/swaggo/files v0.0.0-20190110041405-30649e0721f8 // indirect
 	github.com/swaggo/http-swagger v0.0.0-20190324132102-654001218d89
 	github.com/swaggo/swag v1.6.1
