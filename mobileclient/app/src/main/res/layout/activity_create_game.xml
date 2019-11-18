@@ -54,7 +54,7 @@
                 android:layout_margin="@dimen/fab_margin"
                 android:layout_marginBottom="@dimen/fab_margin"
                 android:text="@string/button_start_game"
-                app:icon="@drawable/baseline_play_arrow_white_48"
+                app:icon="@drawable/baseline_play_arrow_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -27,7 +27,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="createGame"
-        app:srcCompat="@drawable/baseline_add_white_48" />
+        android:tint="@android:color/white"
+        app:srcCompat="@drawable/baseline_add_24" />
 
     <include
         android:id="@+id/include"
