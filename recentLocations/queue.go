@@ -8,7 +8,7 @@ import (
 
 	"github.com/moveyourfeet/moveyourfeet/recentLocations/models"
 	"github.com/moveyourfeet/moveyourfeet/recentLocations/service"
-	"github.com/nats-io/nats"
+	"github.com/nats-io/nats.go"
 )
 
 const subject string = "locations"
