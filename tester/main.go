@@ -11,7 +11,7 @@ import (
 
 	"github.com/moveyourfeet/moveyourfeet/tester/models"
 
-	"github.com/nats-io/nats"
+	"github.com/nats-io/nats.go"
 )
 
 type server struct {
