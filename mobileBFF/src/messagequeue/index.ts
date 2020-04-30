@@ -1,3 +1,5 @@
+
+/* eslint-disable no-unused-vars */
 import { connect, NatsConnectionOptions, Payload, Client } from 'ts-nats';
 
 // // ...

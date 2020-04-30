@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { GameField } from './gameField';
 
 export class CreateGame {

@@ -4,7 +4,7 @@
   "description": "Mobile BFF for MoveYourFeet",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "prebuild": "eslint 'src/**' --fix",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
@@ -24,7 +24,9 @@
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/node": "^12.6.8",
-    "nodemon": "^1.19.1",
-    "tslint": "^5.18.0"
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^1.19.1"
   }
 }
