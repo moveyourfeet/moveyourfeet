@@ -14,7 +14,7 @@
   "author": "The boys",
   "license": "ISC",
   "dependencies": {
-    "@types/socket.io": "^2.1.2",
+    "@types/socket.io": "^2.1.13",
     "express": "^4.17.1",
     "socket.io": "^2.2.0",
     "ts-nats": "^1.2.4",
